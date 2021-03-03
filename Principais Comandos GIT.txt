@@ -1,0 +1,126 @@
+PRINCIPAIS COMANDOS DO GIT
+
+CONFIGURAÇÃO INICIAL NOME E EMAIL
+	 
+	 - Após instalado o GIT, para configurar o nome de usuário enviado nos commits:
+	 	
+	 	git config --global user.name "Leandro Sargi" //deixei entre aspas porque tem espaçamento
+	 
+	 - Para configuração de e-mail:
+	 
+	 	git config --global user.email leandro.sargi@hotmail.com
+
+	 - Para congigurar o editor padrão como Visual Studio Code:
+	 
+	 	git config --global core.editor "code -w"
+	 
+	 - Para ver as configurações do meu git:
+	 
+	 	git config --list
+	 	
+	 - Para adicionar cores aos meus comandos:
+	 
+	 	git config --global color.ui true
+	 	
+	 - Para ver minhas configurações de usuário:
+	 
+	 	cat ~/.gitconfig //isso é no linux
+	 	
+ 	 - Para criar um repositório basta criar uma pasta, abrir o terminal dentro dessa pasta e digitar:
+ 
+ 		git init
+	 	
+COMANDOS PARA MANIPULAÇÃO  DE LOGS
+
+	 - Para ver a juda do git:
+	 
+	 	git help
+	 	
+	 - Para eu ver todos os meus pontos na história do meu git:
+	 
+	 	git log
+	 	
+	 - Para ver o log com o número hash reduzido:
+	 
+	 	git log --oneline
+	 	
+	 - Se eu quiser ver um log com apenas os últimos 5 commits:
+	 
+	 	git log -n 5
+	 	
+	 - Se eu quiser ver os commits desde uma data específica até a data atual:
+	 
+	 	git log --since=2020-10-01
+	 	
+	 - Se eu quiser ver os commits que foram feitos anteriormente a uma data espefífica:
+	 
+	 	git log --until=2020-10-01
+	 	
+	 - Para filtrar os logs por autor:
+	 
+	 	git log --author=Leandro
+	 	
+	 - Para encontrar logs usando expressões regulares:
+	 
+	 	git log --grep="init" //ele vai buscar a palavra "init" em todas as mensagens de commit
+	 	
+COMANDOS PARA PREPARAR ARQUIVOS E FAZER COMMIT
+
+	- Para preparar um arquivo em específico. Ex: file.txt:
+	
+		git add file.txt
+		
+	- Para preparar uma extensão de arquivo específica. Ex: .txt:
+		
+		git add *.txt
+		
+	- Para preparar todos os arquivos que estão dentro de uma pasta:
+	
+		git add .
+		
+	- Para fazer um commit:
+	
+		git commit -m "meu primeiro commit" //é interessante que a descrição do commit seja bem descritiva
+
+COMANDOS COMUNS DO GIT
+
+	- Para ver o status do meu diretório
+	
+		git status
+	
+	- Se eu preparei um arquivo para comitar mas me arrependi e quero deixar ele para preparar mais tarde.
+	Ex: o nome do arquivo é file2.txt:
+	
+		git rm --cached file2.txt
+		
+	- Quando eu estiver trabalhando em um projeto muito grande e tiver alterado muitos arquivos
+	ao mesmo tempo e quiser saber o que foi alterado em cada um deles:
+	
+		git diff	//vai me mostrar um log com tudo que foi alterado nos meus arquivos,
+		quando tiver um sinal + na frente são arquivos criados, +++ são linhas adicionadas em
+		arquivos existentes, - na frente são arquivos deletados, --- na frente são linhas
+		excluídas de arquivos existentes
+		
+	- Se eu preparei um arquivo mas não comitei e quero ver qual a diferença desse arquivo com o que está
+	salvo no repositório:
+	
+		git diff --staged	//preciso fazer isso porque após preparar um arquivo, o git
+		não me mostra mais as diferenças dele usando apenas git diff
+	
+	- Para deixar de rastrear um arquivo que já foi preparado:
+	
+		git restore --staged file.txt
+		
+	- Para deletar um aruivo do meu repositório:
+	
+		git rm file.txt	//deleta permanentemente do repositório e do computador
+		
+	- Para renomear um arquivo posso usar o mesmo comando:
+	
+		git mv file.txt file-nova.txt
+		
+	- Para mover um arquivo uso o comando:
+	
+		git mv file.txt /fotos/file.txt
+		
+	
