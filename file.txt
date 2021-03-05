@@ -107,11 +107,11 @@ COMANDOS COMUNS DO GIT
 		git diff --staged	//preciso fazer isso porque após preparar um arquivo, o git
 		não me mostra mais as diferenças dele usando apenas git diff
 	
-	- Para restaurar um arquivo que já foi pro staged área:
+	- Para deixar de rastrear um arquivo que já foi preparado:
 	
 		git restore --staged file.txt
 		
-	- Para deletar um arquivo do meu repositório:
+	- Para deletar um aruivo do meu repositório:
 	
 		git rm file.txt	//deleta permanentemente do repositório e do computador
 		
@@ -123,77 +123,4 @@ COMANDOS COMUNS DO GIT
 	
 		git mv file.txt /fotos/file.txt
 		
-	- Para desfazer as alterações que fiz sem querer em um arquivo que está sendo rastreado, porém
-	ainda não foi pro staged área:
 	
-		git restore file.txt
-		
-	- Para corrigir a mensagem de um commit:
-	
-		git commit --amend -m "nova mensagem corrigida"
-		
-	- Para corrigir um comit com arquivos modificados:
-	
-		git add .
-		git commit --amend -m "commit corrigido"
-		
-	- Para listar todos os arquivos do diretório remoto:
-	
-		ls -al
-		
-	- Para trazer para o working directory, um arquivo de um determinado ponto na história.
-	Primeiro encontro o numero hash do ponto na história escolhido. Ex: 123456789.
-	Depois encontro o nome do arquivo. Ex: file.txt
-	
-		git checkout 123456789 -- file.txt
-	O arquivo vai aparecer no meu working directory e já vai ser colocado automaticamente
-	no staged área
-	
-	- Para deletar permanentemente arquivos que não estão sendo rastreados
-	
-		git clean -f
-		
-	- Para ver arquivos que serão deletados permanentemente antes de deletá-los:
-	
-		git clean -n
-		
-	- Para retornar os arquivos de um ponto na história e comitá-los daqui pra frente.
-	Supondo que quero voltar 5 commits para trás:
-	
-		git revert HEAD~5
-		
-	- Para retornar os arquivos de um ponto na história e comitá-los daqui pra frente.
-	Fazendo a busca através do git log:
-	
-		git log --oneline	//seleciono um numero hash. Ex: "123456789"
-		git revert 123456789
-		
-	- Quando os arquivos ja estão sendo rastreados eu posso comitar dessa forma
-	sem usar git add . :
-	
-		git comit -am "minha mensagem de commit"
-		
-	- Quando eu quiser ver quais foram as alterações realizadas em um commit passado ou atual.
-	Supondo que as iniciais do hash sejam 123456:
-	
-		git show 123456
-		
-	- Para ver somente as alterações pontuais dos arquivos, supondo que o hash seja 123456:
-	
-		git show 123456 --color-words
-		
-	- Para ver as alterações de subdiretórios os arquivos do meu working directory:
-	
-		git show 123456 /minhapasta/subpasta/*	//para todos os arquivos
-		git show 123456 /minhapasta/subpasta/file.txt	//para arquivo em específico
-		
-	- Para ignorar pastas ou arquivos que podem ser criadas dentro do meu working directory.
-	Criar um arquivo na raiz chamado .gitignore e adicionar o nome dos arquivos ou pastas
-	a serem ignorados nas linhas do arquivo .gitignore:
-		
-		minhapasta/		//para pastas
-		file.txt		//para arquivos
-		
-	- Para limpar repositório depois de adicionar um arquivo .gitignore:
-	
-		git rm -r --cached .
