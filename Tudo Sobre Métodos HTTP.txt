@@ -1,0 +1,186 @@
+Tudo sobre métodos HTTP
+
+HTTP Methods
+	
+	Define um conjunto de métodos HTTTP (ações e funcionalidades)
+	Indica a ação que o cliente deseja operar
+	Podem ser chamados de verbos HTTP
+	Cada um possui a sua semântica
+	Http Methods Podem ser:
+		 Seguros >> não alteram o estado do servidor
+		 	GET
+		 	HEAD
+		 	OPTION
+		 Não seguros >> alteram o estado do servidor
+		 Idempotente >> o servidor devolve sempre a mesma resposta para o mesmo tipo de requisição
+		 	Todos os métodos seguros são idempotentes
+		 	PUT >> é idempotente porém não é seguro
+		 	DELETE >> é idempotente porém não é seguro
+		 	
+Instalação do JSON SERVER PELA PÁGINA DO GITHUB
+	Após instalação, criar um diretório para o trabalho, e dentro desse diretório criar um arquivo
+	chamado db.json, colar dentro do arquivo as linhas que estão descritas no github e salvar
+	
+Para iniciar o servidor json, basta brir um terminal e digitar a seguinte linha:
+	json-server --watch db.json
+	
+Após fazer esse comando, deixar a janela do terminal aberta para que o servidor json continue rodando
+e abrir uma nova janela do terminal para trabalhar
+
+Entrando na minha máquina local com:
+	
+	curl http://localhost:3000/posts
+	
+Já consigo ter um retorno do meu pedido
+
+Para receber o retorno do pedido com os cabeçalhos:
+
+	curl -i http://localhost:3000/posts
+	
+Método OPTIONS
+
+Esse método me dá informações sobre os métodos que tenho disponíveis para determinada página
+Eu posso verificar isso na prática, com meu servidor json rodando, digitando o seguinte comando:
+
+	curl -X OPTIONS http://localhost:3000/posts -i >> este comando me retornará uma resposta
+	sem corpo, apenas com cabeçalho
+	
+Método GET (pegar um recurso)
+
+	Esse método somente vai receber dados
+	Na hora de fazer o pedido o certo é não enviar o body no request
+	No response vou receber um body
+	Este método é cacheable
+	E pode ser usado em formulários HTTP
+	
+	Um exemplo de caminho GET pode ser visto ao rodar o comando:
+	
+		curl -v http://localhost:3000/posts
+	
+Método HEAD
+
+	Semelhante ao GET porém recebemos somente o cabeçalho
+	Método GET não tem body nem para o envio e nem para a resposta
+	Ele é cacheable
+	Não é usado em formulários HTTP
+	
+	Exemplo prático de utilização do HEAD:
+		
+		curl -I http://localhost:3000/posts
+		
+Método POST
+
+	Significa publicar, cadastrar ou incluir um recurso em algum lugar
+	Não é seguro
+	Não é idempotente
+	O corpo existirá na requisição e na resposta
+	O post é utilizado em formulários em HTML
+	
+	Posso verificar o que tem no meu servidor com o seguinte comando:
+	
+		cat db.json
+	
+	Como eu crio um post no meu servidor:
+	
+		curl -d '{ "id": 2, "title": "json-server2", "leandro": "typicode" }' -H "Content-type: application/json" -X POST http://localhost:3000/posts
+		
+		Explicando esse comando:
+		
+			O curl -d envia o body da minha requisição
+			-H configura os HEADERS (nesse caso somente um avisando que estou enviando um jason)
+			-X informa qual o tipo do método que estou usando, no caso POST
+			E por fim é colocado a rota, que é a mesma do GET, porém agora com esse comando,
+			tudo está configurado para enviar os dados que eu digitei no -d, para dentro do
+			arquivo db.jason dentro do servidor
+	Para eu ver se meu cadastro foi feito com sucesso, basta ver o arquivo db.json com:
+	
+			cat db.json
+			
+			
+Método PUT
+
+	Serve para criar ou atualizar um recurso (porém serve muito mais para atualizar)
+	Não é seguro
+	É idempotente
+	Tem corpo na requisição mas não tem corpo na resposta
+	Não é usado em formulários HTML
+	Não é cacheable
+	
+	Exemplo prático de aplicação do PUT:
+	
+	Primeiro eu vou ver o que tem dentro do meu profile:
+	
+	curl http://localhost:3000/profile
+
+	Depois vou atualizar esse recurso com:
+	
+		curl -d '{"name": "leandro"}' -H 'Content-type: application/json' -X PUT http://localhost:3000/profile -i
+		
+	Por fim posso ver o que tem dentro de profile novamente:
+	
+	curl http://localhost:3000/profile
+
+Método PATCH
+
+	Serve para realizar a modificação parcial de um recurso
+	Não é seguro
+	Não é idempotente
+	Possui corpo na requisição e na resposta
+	Não é usado em formulários HTML
+	Não é cacheable
+	
+	Primeiro vou verificar se meu servidor aceita o método PATCH:
+	
+		curl -X OPTIONS http://localhost:3000/posts -i 
+		
+	Depois vou passar meu PATCH:
+	
+		curl -d '{"title": "my-title"}' -H 'Content-type: application/json' -X PATCH http://localhost:3000/posts/1
+		
+Método DELETE
+
+	Serve para remover um recurso
+	Não é seguro
+	É idempotente
+	Corpo na requisição e na respota é uma possibilidade
+	Uso em formulário HTML não
+	Cacheable não
+	
+	Para usar o método na prática:
+	
+		curl -X DELETE http://localhost:3000/posts/2
+		
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Códigos que o servidor retorna
+	
+	Código 200 >> ok
+	Código 202 >> aceito (para delete)
+	Código 201 >> conteúdo criado
+	Código 204 >> consegui fazer a conexão porém não há conteúdo
+
+
+
+		 
+
+	
+	
