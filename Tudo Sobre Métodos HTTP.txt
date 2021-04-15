@@ -148,35 +148,29 @@ Método DELETE
 	
 	Para usar o método na prática:
 	
-		curl -X DELETE http://localhost:3000/posts/2
-		
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		curl -X DELETE http://localhost:3000/posts/2	
 	
 Códigos que o servidor retorna
 	
-	Código 200 >> ok
+	Código 100 >> coninue
+	Código 200 >> ok (get, post)
+	Código 201 >> conteúdo criado (put)
 	Código 202 >> aceito (para delete)
-	Código 201 >> conteúdo criado
-	Código 204 >> consegui fazer a conexão porém não há conteúdo
+	Código 204 >> consegui fazer a conexão porém não há conteúdo (delete, put)
+	Código 300 >> movido permanentemente
+	Código 308 >> movimentação permanente (post)
+	Código 302 >> conteudo encontrado, mas houve mudança temporária
+	Código 307 >> conteudo temporariamente redirecionado
+	Código 400 >> má requisição do pedido (bad request)
+	Código 401 >> você não tem autorização para receber este recurso
+	Código 403 >> você não tem permissão para receber este recurso
+	Código 404 >> recurso não encontrado
+	Código 405 >> o método não está permitido
+	Código 429 >> muitas requisições consecutivas (ao testar uma api pode acabar dando este erro, deve aguardar antes de mandar mais requisições ao servidor)
+	Código 500 >> erro interno de servidor
+	Código 503 >> serviço não disponível
+	
+Sempre que eu quiser mais informações sobre HEADERS ou Status Code, devo entrar em  >>  devdocs.io
 
 
 
